@@ -254,7 +254,12 @@
                             lesson.spaces++
                         )
                     }
-                }
+                },
+            },
+            computed: {
+                cartTotal(){
+                    return this.cartItems.reduce((total, item) => total + item.price, 0)
+                },
             }
         })
     </script>
