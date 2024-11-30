@@ -367,6 +367,22 @@
                         alert('Error while processing your order. Try again later.');
                     };
                 },
+                validateName(){
+                    const nameRegex = /^[A-Za-z\s]+$/;
+                    this.isNameValid = !nameRegex.test(this.customerName);
+                    this.updateValidCheckout();
+                },
+                validatePhone() {
+                    const phoneRegex = /^[0-9]+$/;
+                    this.isPhoneValid = !phoneRegex.test(this.customerPhone);
+                    this.updateValidCheckout();
+                },
+                updateValidCheckout() {
+                    this.isCheckoutValid = 
+                    this.customerName.length > 0 && this.customerPhone.length > 0 &&
+                    !this.isNameValid && !this.isPhoneValid &&
+                    this.cartItems.length > 0;
+                }
             },
             computed: {
                 cartTotal(){
