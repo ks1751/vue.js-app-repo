@@ -255,6 +255,25 @@
                         )
                     }
                 },
+                async searchLessons() {
+                    if (this.searchQuery.length > 0) {
+                        try {
+                            const response = await fetch(`/search?q=${this.searchQuery}`);
+                            const data = await response.json();
+                            this.lessons = data; 
+                        } catch (error) {
+                            console.error('Error during search request:', error);
+                        }
+                    } else {
+                        this.lessons = []; 
+                    }
+                },
+                quickSearch(){
+                    clearTimeout(this.searchTimer);
+                    this.searchTimer = setTimeout(() => {
+                        this.searchLessons
+                    }, 500)
+                }
             },
             computed: {
                 cartTotal(){
