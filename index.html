@@ -289,6 +289,24 @@
                         console.error('Error fetching lessons:', error);
                     }
                 },
+                async saveOrder(order) {
+                    try{
+                        const response = await fetch(`http://localhost:3000/api/orders`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type' : 'application/json'
+                            },
+                            body: JSON.stringify(order)
+                        }); 
+                        if(!response.ok) {
+                            throw new Error('Failed to save order');
+                        }
+                        return await response.json();
+                    } catch (error) {
+                        console.error('Error saving order:', error);
+                        throw error
+                    }
+                }
             },
             computed: {
                 cartTotal(){
