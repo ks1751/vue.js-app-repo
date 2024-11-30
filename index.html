@@ -260,6 +260,25 @@
                 cartTotal(){
                     return this.cartItems.reduce((total, item) => total + item.price, 0)
                 },
+                sortedLessons() {
+                    let filteredLessons = [...this.lessons];
+                    if (this.sortBy) {
+                        filteredLessons.sort((a, b) => {
+                            let comparison = 0;
+                            if (['subject', 'location'].includes(this.sortBy)) {
+                                const aValue = a[this.sortBy]?.toString().toLowerCase() || '';
+                                const bValue = b[this.sortBy]?.toString().toLowerCase() || '';
+                                comparison = aValue.localeCompare(bValue);
+                            } else if (['price', 'spaces'].includes(this.sortBy)) {
+                                const aValue = Number(a[this.sortBy]) || 0;
+                                const bValue = Number(b[this.sortBy]) || 0;
+                                comparison = aValue - bValue;
+                            }
+                            return this.sortOrder === 'asc' ? comparison : -comparison;
+                        });
+                    }
+                    return filteredLessons;
+                }
             }
         })
     </script>
