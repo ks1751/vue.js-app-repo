@@ -407,6 +407,9 @@
                     }
                     return filteredLessons;
                 }
+            },
+            created() {
+                this.fetchAllLessons();
             }
         })
     </script>
