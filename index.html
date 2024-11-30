@@ -273,7 +273,22 @@
                     this.searchTimer = setTimeout(() => {
                         this.searchLessons
                     }, 500)
-                }
+                },
+                async fetchAllLessons(){
+                    try {
+                        const response = await fetch('http://localhost:3000/lessons');
+                        if (response.ok){
+                            const lessons = await response.json();
+                            console.log('Fetched lessons:', lessons);
+                            this.lessons = lessons;
+                        } else {
+                            const errorText = await response.text();
+                            console.error('Failed to fetch lessons:', errorText);
+                        }
+                    }catch (error){
+                        console.error('Error fetching lessons:', error);
+                    }
+                },
             },
             computed: {
                 cartTotal(){
