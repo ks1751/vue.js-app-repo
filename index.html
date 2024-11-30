@@ -77,5 +77,57 @@
                 </div>
             </div>
 
+            <div class="border-t pt-6">
+                <h3 class="text-xl font-bold mb-4">Customer Information</h3>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-gray-700 text-sm font-bold mb-2">
+                            Name
+                        </label>
+                        <input 
+                            type="text" 
+                            v-model="customerName"
+                            @input="validateName"
+                            class="border rounded p-2 w-full"
+                            :class="{'border-red-500': isNameValid}"
+                            placeholder="Enter your name"
+                        >
+                        <p v-if="isNameValid" class="text-red-500 text-sm mt-1">
+                            Name must contain letters only
+                        </p>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 text-sm font-bold mb-2">
+                            Phone
+                        </label>
+                        <input 
+                            type="tel" 
+                            v-model="customerPhone"
+                            @input="validatePhone"
+                            class="border rounded p-2 w-full"
+                            :class="{'border-red-500': isPhoneValid}"
+                            placeholder="Enter your phone number"
+                        >
+                        <p v-if="isPhoneValid" class="text-red-500 text-sm mt-1">
+                            Phone must contain numbers only
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 flex justify-between items-center">
+                <div class="text-xl font-bold">
+                    Total: ${{cartTotal}}
+                </div>
+                <button 
+                    @click="checkout"
+                    :disabled="!isCheckoutValid"
+                    class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 disabled:bg-gray-400 disabled:cursor-not-allowed">
+                    Checkout
+                </button>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
