@@ -34,7 +34,7 @@
                                 Sort by:
                             </label>
                             <select 
-                                v-model="sortAttribute"
+                                v-model="sortBy"
                                 class="border rounded p-2 w-full">
                                 <option value="subject">Subject</option>
                                 <option value="location">Location</option>
@@ -83,7 +83,7 @@
                     <div class="mt-4">
                         <p class="text-sm text-gray-600">
                             Currently sorting by: 
-                            <span class="font-bold">{{sortAttribute}}</span> 
+                            <span class="font-bold">{{sortBy}}</span> 
                             in 
                             <span class="font-bold">{{sortOrder === 'asc' ? 'ascending' : 'descending'}}</span> 
                             order
@@ -216,5 +216,26 @@
             </div>  
         </main>
     </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                selectedSubjected: '',
+                sortBy: 'subject',
+                sortOrder: 'asc',
+                showCart: false,
+                cartItems: [],
+                lessons: [],
+                customerName: '',
+                customerPhone: '',
+                isNameValid: false,
+                isPhoneValid: false,
+                isCheckoutValid: false,
+                searchQuery: '',
+                searchTimer: null,
+            },
+        })
+    </script>
 </body>
 </html>
