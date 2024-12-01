@@ -8,7 +8,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.14/vue.js"></script>
 
     <style>
-        .lesson-image {
+.lesson-image {
     max-width: 100px; /* Adjust as needed */
     height: auto; /* Maintains aspect ratio */
     margin-right: 10px; /* Space between the image and text */
@@ -16,6 +16,7 @@
     display: block; /* Ensure it's treated as a block-level element */
     margin: 0 auto; /* Center-align the image horizontally */
 }
+    
     </style>
 </head>
 <body class="'bg-gray-50">
@@ -23,13 +24,20 @@
         <nav class="bg-red-900 p-4 text-white mb-8">
             <div class="container mx-auto flex justify-between items-center">
                 <h1 class="text-xl font-bold">MY STORE</h1>
-                <div>
-                    <span class="mr-4"><i class="fas fa-shopping-cart mr-2"></i>Cart Items: {{cartItems.length}}</span>
+                <div class="flex items-center space-x-4">
+                    <input 
+                        type="text" 
+                        v-model="searchQuery" 
+                        placeholder="Search lessons..." 
+                        @input="searchLessons"
+                        class="rounded-lg px-4 py-2 text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white"
+                    >
                     <button
                         @click="toggleCart"
                         :disabled="cartItems.length === 0"
                         class="bg-white text-red-900 px-4 py-2 rounded disabled:bg-gray-300 disabled:cursor-not-allowed">
-                        {{showCart ? ' Back To Lessons' : 'Cart'}}
+                        <i class="fas fa-shopping-cart mr-2"></i>
+                        {{showCart ? 'Back To Lessons' : `Cart (${cartItems.length})`}}
                     </button>
                 </div>
             </div>
@@ -83,13 +91,6 @@
                         <label class="block text-gray-700 text-sm font-bold mb-2">
                             Search lessons:
                         </label>
-                        <input 
-                            type="text" 
-                            v-model="searchQuery"
-                            @input="searchLessons" 
-                            placeholder="Search by any term..."
-                            class="border rounded p-2 w-full"
-                        >
                     </div>
                     <div class="mt-4">
                         <p class="text-sm text-gray-600">
@@ -105,7 +106,7 @@
 
 
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div 
                         v-for="lesson in sortedLessons" :key = 'lesson._id'
                         class="bg-white rounded-lg shadow-md overflow-hidden">
