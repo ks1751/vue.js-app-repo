@@ -276,7 +276,7 @@
                 },
                 async fetchAllLessons(){
                     try {
-                        const response = await fetch('http://localhost:3000/lessons');
+                        const response = await fetch('https://express-js-app-caku.onrender.com/lessons');
                         if (response.ok){
                             const lessons = await response.json();
                             console.log('Fetched lessons:', lessons);
@@ -291,7 +291,7 @@
                 },
                 async saveOrder(order) {
                     try{
-                        const response = await fetch(`http://localhost:3000/api/orders`, {
+                        const response = await fetch(`https://express-js-app-caku.onrender.com/api/orders`, {
                             method: 'POST',
                             headers: {
                                 'Content-Type' : 'application/json'
@@ -313,7 +313,7 @@
                         console.log('Updating lesson with ID:', cleanLessonId);
                         console.log('New spaces value:', spaces);
 
-                        const response = await fetch(`http://localhost:3000/api/lessons/` + cleanLessonId, {
+                        const response = await fetch(`https://express-js-app-caku.onrender.com/api/lessons/` + cleanLessonId, {
                             method: "PUT",
                             headers: {
                                 "Content-Type": 'application/json'
