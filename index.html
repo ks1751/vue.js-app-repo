@@ -342,8 +342,7 @@
                         name: this.customerName,
                         phone: this.customerPhone,
                         lessonId: this.cartItems.map (item => item._id),
-                        spaces: this.cartItems.length,
-                        total: this.cartTotal
+                        spaces: this.cartItems.length
                     };
                     try {
                         await this.saveOrder(order);
